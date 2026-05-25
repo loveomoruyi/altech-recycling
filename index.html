@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Altech Companies - ITAD Solutions</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Altech Recycling - IT Asset Disposition</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,29 +15,30 @@ a{color:#fff;text-decoration:none}
 .nav-links{display:flex;gap:30px;list-style:none}
 .nav-links a:hover{color:#4fc3f7}
 .logo{font-size:28px;letter-spacing:8px;font-weight:300;background:linear-gradient(135deg,#4fc3f7,#00e676);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#1a2332 0%,#2c3e50 100%);padding-top:80px}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:80px;overflow:hidden}
+.hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(26,35,50,0.85),rgba(15,25,35,0.8));z-index:1}
+.hero-content{position:relative;z-index:2}
 .hero h1{font-size:64px;letter-spacing:12px;font-weight:300;margin-bottom:10px}
 .sub{font-size:14px;letter-spacing:3px;color:#4fc3f7;margin-bottom:20px}
 .hero p{font-size:18px;color:#b0bec5;max-width:600px;line-height:1.6}
-.cta{display:inline-block;margin-top:30px;padding:15px 40px;background:#4fc3f7;color:#1a2332;border:none;font-size:16px;cursor:pointer;border-radius:4px;font-weight:bold;text-decoration:none}
-.cta:hover{background:#29b6f6;color:#1a2332}
-.sec{padding:80px 40px;max-width:1200px;margin:0 auto}
-.sec h2{font-size:36px;margin-bottom:40px;text-align:center;letter-spacing:4px}
-/* T-Shape Layout */
-.t-layout{max-width:1200px;margin:0 auto;padding:0 20px}
-.t-top-row{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-bottom:30px}
-.t-bottom-row{display:flex;justify-content:center;margin-bottom:30px}
-.t-bottom-row .card{max-width:380px;width:100%}
-.card{background:#2c3e50;padding:40px;border-radius:8px;text-align:center;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;text-decoration:none;display:block;color:#fff}
-.card:hover{transform:translateY(-5px);box-shadow:0 10px 40px rgba(79,195,247,0.2)}
-.card h3{font-size:22px;margin-bottom:15px;color:#4fc3f7}
-.card p{color:#b0bec5;line-height:1.6}
-.icon{font-size:40px;margin-bottom:20px}
-.card .view-link{display:inline-block;margin-top:15px;color:#4fc3f7;font-size:14px;font-weight:600;letter-spacing:1px;border-bottom:1px solid transparent;transition:border-color 0.3s}
-.card:hover .view-link{border-bottom-color:#4fc3f7}
-.certs{background:#2c3e50;padding:60px 40px;text-align:center}
-.certs h2{font-size:36px;margin-bottom:15px;letter-spacing:4px}
-.badges{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:30px}
+.cta{display:inline-block;margin-top:30px;padding:15px 40px;background:#00e676;color:#0f1923;border:none;font-size:16px;cursor:pointer;border-radius:4px;font-weight:bold;text-decoration:none}
+.cta:hover{background:#00c853}
+.service-section{position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:80px 40px}
+.service-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.service-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(15,25,35,0.82);z-index:1}
+.service-content{position:relative;z-index:2;text-align:center;max-width:800px}
+.service-content .icon{font-size:48px;margin-bottom:20px}
+.service-content h3{font-size:32px;margin-bottom:15px;letter-spacing:2px}
+.service-content p{font-size:18px;color:#b0bec5;line-height:1.7;margin-bottom:25px}
+.service-content .view-link{color:#4fc3f7;font-weight:600;font-size:16px;letter-spacing:1px;transition:color 0.3s}
+.service-content .view-link:hover{color:#00e676}
+.services-header{text-align:center;padding:80px 40px 40px;background:#0f1923}
+.services-header h2{font-size:36px;margin-bottom:20px;letter-spacing:4px}
+.services-header p{color:#b0bec5;font-size:18px}
+.certs{text-align:center;padding:80px 40px;background:#0f1923}
+.certs h2{font-size:36px;margin-bottom:20px;letter-spacing:4px}
+.badges{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:30px}
 .badge{padding:15px 25px;border:2px solid #4fc3f7;border-radius:8px;font-weight:bold;font-size:14px}
 .contact{padding:80px 40px;max-width:800px;margin:0 auto}
 .contact h2{font-size:36px;margin-bottom:20px;text-align:center;letter-spacing:4px}
@@ -47,17 +48,17 @@ a{color:#fff;text-decoration:none}
 .fg label{display:block;margin-bottom:8px;font-size:14px}
 .fg input,.fg select,.fg textarea{width:100%;padding:12px;border:1px solid #4a5568;background:#2c3e50;color:#fff;border-radius:4px;font-size:14px}
 .fg textarea{height:120px;resize:vertical}
-.btn{padding:15px 40px;background:#4fc3f7;color:#1a2332;border:none;font-size:16px;cursor:pointer;border-radius:4px;font-weight:bold;width:100%}
-.btn:hover{background:#29b6f6}
+.btn{padding:15px 40px;background:#00e676;color:#0f1923;border:none;font-size:16px;cursor:pointer;border-radius:4px;font-weight:bold;width:100%}
+.btn:hover{background:#00c853}
 .ft{background:#0f1923;padding:40px}
 .fi{display:flex;justify-content:center;gap:60px;flex-wrap:wrap;margin-bottom:30px}
 .fi div{text-align:center}
 .fi h4{color:#4fc3f7;margin-bottom:10px}
 .fi p{color:#b0bec5;line-height:1.8}
 .sl{display:flex;justify-content:center;gap:15px;margin-bottom:20px}
-.sl a{width:40px;height:40px;border:1px solid #4fc3f7;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background 0.3s}
+.sl a{width:36px;height:36px;border:1px solid #4fc3f7;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#4fc3f7;font-size:14px}
 .sl a:hover{background:#4fc3f7;color:#1a2332}
-@media(max-width:768px){.hero h1{font-size:36px}.row{grid-template-columns:1fr}.nav-links{display:none}.fi{gap:30px}.t-top-row{grid-template-columns:1fr}}
+@media(max-width:768px){.hero h1{font-size:36px}.row{grid-template-columns:1fr}.nav-links{display:none}.fi{gap:30px}.service-section{min-height:50vh;padding:60px 20px}.service-content h3{font-size:24px}}
 </style>
 </head>
 <body>
@@ -71,42 +72,67 @@ a{color:#fff;text-decoration:none}
 </ul>
 </nav>
 <section class="hero" id="home">
+<video class="hero-video" autoplay muted loop playsinline>
+<source src="https://videos.pexels.com/video-files/6466100/6466100-hd_1920_1080_30fps.mp4" type="video/mp4">
+</video>
+<div class="hero-overlay"></div>
+<div class="hero-content">
 <h1>A L T E C H</h1>
 <div class="sub">IT ASSET DISPOSITION</div>
 <p>Responsible electronics recycling and IT asset management for businesses in Houston, Texas and the Gulf Coast region.</p>
 <a href="#contact" class="cta">Request a Quote</a>
+</div>
 </section>
-<section class="sec" id="services">
+<div class="services-header" id="services">
 <h2>Our Services</h2>
-<div class="t-layout">
-<div class="t-top-row">
-<a href="it-management.html" class="card">
+<p>Comprehensive IT asset disposition solutions</p>
+</div>
+<section class="service-section">
+<video class="service-video" autoplay muted loop playsinline>
+<source src="https://videos.pexels.com/video-files/3289569/3289569-hd_1920_1080_25fps.mp4" type="video/mp4">
+</video>
+<div class="service-overlay"></div>
+<div class="service-content">
 <div class="icon">&#128187;</div>
 <h3>ITAD Management &amp; Resale</h3>
-<p>Our ITAD service is dedicated to optimizing your technology investments. We ensure efficient tracking, maintenance, and responsible disposal.</p>
-<span class="view-link">LEARN MORE &rarr;</span>
-</a>
-<a href="responsible-recycling.html" class="card">
+<p>End-to-end IT asset disposition with certified data destruction and maximum value recovery through refurbishment and resale channels.</p>
+<a href="it-management.html" class="view-link">LEARN MORE &rarr;</a>
+</div>
+</section>
+<section class="service-section">
+<video class="service-video" autoplay muted loop playsinline>
+<source src="https://videos.pexels.com/video-files/6981411/6981411-hd_1920_1080_25fps.mp4" type="video/mp4">
+</video>
+<div class="service-overlay"></div>
+<div class="service-content">
 <div class="icon">&#9851;</div>
 <h3>Responsible Recycling</h3>
-<p>We responsibly recycle your computer and electronic equipment. R2V3, ISO 9001, ISO 14001, and ISO 45001 certified.</p>
-<span class="view-link">LEARN MORE &rarr;</span>
-</a>
-<a href="#" class="card">
-<div class="icon">&#128666;</div>
-<h3>Customer Drop-Off</h3>
-<p>Open Monday through Friday from 8:30 AM to 3:30 PM CT at our Houston facility.</p>
-<span class="view-link">LEARN MORE &rarr;</span>
-</a>
+<p>EPA-compliant recycling processes ensuring zero landfill disposal. We break down electronics responsibly and recover valuable materials.</p>
+<a href="responsible-recycling.html" class="view-link">LEARN MORE &rarr;</a>
 </div>
-<div class="t-bottom-row">
-<a href="schedule-pickup.html" class="card">
+</section>
+<section class="service-section">
+<video class="service-video" autoplay muted loop playsinline>
+<source src="https://videos.pexels.com/video-files/3191572/3191572-hd_1920_1080_25fps.mp4" type="video/mp4">
+</video>
+<div class="service-overlay"></div>
+<div class="service-content">
 <div class="icon">&#128230;</div>
+<h3>Customer Drop-Off</h3>
+<p>Convenient drop-off location for businesses and individuals. Bring your old electronics to our facility for secure processing.</p>
+<a href="#contact" class="view-link">LEARN MORE &rarr;</a>
+</div>
+</section>
+<section class="service-section">
+<video class="service-video" autoplay muted loop playsinline>
+<source src="https://videos.pexels.com/video-files/5700938/5700938-hd_1920_1080_25fps.mp4" type="video/mp4">
+</video>
+<div class="service-overlay"></div>
+<div class="service-content">
+<div class="icon">&#128666;</div>
 <h3>Schedule a Pickup</h3>
 <p>Schedule an LTL or full truckload shipment. We handle logistics from start to finish.</p>
-<span class="view-link">LEARN MORE &rarr;</span>
-</a>
-</div>
+<a href="schedule-pickup.html" class="view-link">LEARN MORE &rarr;</a>
 </div>
 </section>
 <section class="certs" id="about">
@@ -122,14 +148,17 @@ a{color:#fff;text-decoration:none}
 </section>
 <section class="contact" id="contact">
 <h2>Contact Us</h2>
-<p>Contact us for electronics recycling and reselling in Houston, Texas and the Gulf Coast region.</p>
-<form class="form" onsubmit="event.preventDefault();alert('Thank you!')">
+<p style="color:#b0bec5">Get a quote for your IT asset disposition needs</p>
+<form class="form">
 <div class="row">
 <div class="fg"><label>First Name *</label><input type="text" required></div>
 <div class="fg"><label>Last Name *</label><input type="text" required></div>
-<div class="fg"><label>Email *</label><input type="email" required></div>
-<div class="fg"><label>Phone/Mobile</label><input type="tel"></div>
 </div>
+<div class="row">
+<div class="fg"><label>Email *</label><input type="email" required></div>
+<div class="fg"><label>Phone</label><input type="tel"></div>
+</div>
+<div class="fg"><label>Company</label><input type="text"></div>
 <div class="fg"><label>Topic *</label><select required><option value="">- Select -</option><option>ITAD Services</option><option>Recycling</option><option>Drop-Off</option><option>Pickup</option><option>Quote</option><option>Other</option></select></div>
 <div class="fg"><label>Your Message *</label><textarea required></textarea></div>
 <button type="submit" class="btn">Send Message</button>
