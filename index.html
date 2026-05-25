@@ -1,54 +1,61 @@
-<!-- Site verified updatable - design enhancements ready -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Altech Companies - ITAD Solutions</title>
-<style>*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;color:#fff;background:#1a2332}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altech Companies - ITAD Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',Arial,sans-serif;color:#fff;background:#0f1923}
 a{color:#fff;text-decoration:none}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:#1a2332;position:fixed;width:100%;top:0;z-index:100;border-bottom:1px solid #2c3e50}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:rgba(15,25,35,0.95);position:fixed;width:100%;top:0;z-index:100;border-bottom:1px solid rgba(79,195,247,0.2);backdrop-filter:blur(10px)}
 .nav-links{display:flex;gap:30px;list-style:none}
 .nav-links a:hover{color:#4fc3f7}
-.logo{font-size:28px;letter-spacing:8px;font-weight:300}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#1a2332 0%,#2c3e50 100%);padding-top:80px}
-.hero h1{font-size:64px;letter-spacing:12px;font-weight:300;margin-bottom:10px}
-.sub{font-size:14px;letter-spacing:3px;color:#4fc3f7;margin-bottom:20px}
-.hero p{font-size:18px;color:#b0bec5;max-width:600px;line-height:1.6}
-.cta{display:inline-block;margin-top:30px;padding:15px 40px;background:#4fc3f7;color:#1a2332;border:none;font-size:16px;cursor:pointer;border-radius:4px;font-weight:bold;text-decoration:none}
-.cta:hover{background:#29b6f6;color:#1a2332}
-.sec{padding:80px 40px;max-width:1200px;margin:0 auto}
-.sec h2{font-size:36px;margin-bottom:40px;text-align:center;letter-spacing:4px}
+.logo{font-size:24px;letter-spacing:8px;font-weight:700;background:linear-gradient(135deg,#4fc3f7,#00e676);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#0f1923 0%,#1a2f3d 40%,#0d3b2e 70%,#0f1923 100%);padding-top:80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 30% 50%,rgba(0,230,118,0.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(79,195,247,0.08) 0%,transparent 60%);pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:900px;padding:0 20px}
+.hero h1{font-size:72px;letter-spacing:12px;font-weight:800;margin-bottom:10px;background:linear-gradient(135deg,#ffffff,#b2ebf2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sub{font-size:18px;letter-spacing:6px;color:#4fc3f7;margin-bottom:30px;font-weight:300}
+.hero p{font-size:20px;color:#b0bec5;max-width:650px;line-height:1.7;margin:0 auto 40px}
+.cta{display:inline-block;padding:18px 48px;background:linear-gradient(135deg,#00e676,#00c853);color:#0f1923;border:none;font-size:16px;cursor:pointer;border-radius:50px;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:2px;transition:transform 0.3s,box-shadow 0.3s}
+.cta:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(0,230,118,0.3)}
+.sec{padding:100px 40px;max-width:1200px;margin:0 auto}
+.sec h2{font-size:36px;margin-bottom:20px;text-align:center;letter-spacing:4px;font-weight:700}
+.sec-subtitle{text-align:center;color:#b0bec5;margin-bottom:60px;font-size:18px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px}
-.card{background:#2c3e50;padding:40px;border-radius:8px;text-align:center;transition:transform 0.3s}
-.card:hover{transform:translateY(-5px)}
+.card{background:linear-gradient(135deg,#1a2f3d,#162430);padding:40px;border-radius:12px;text-align:center;transition:transform 0.3s,box-shadow 0.3s;border:1px solid rgba(79,195,247,0.1)}
+.card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,0.3)}
 .card h3{font-size:22px;margin-bottom:15px;color:#4fc3f7}
 .card p{color:#b0bec5;line-height:1.6}
 .icon{font-size:48px;margin-bottom:20px}
-.certs{background:#2c3e50;padding:60px 40px;text-align:center}
+.certs{background:#0a1219;padding:80px 40px;text-align:center}
 .certs h2{font-size:36px;margin-bottom:15px;letter-spacing:4px}
 .badges{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:30px}
-.badge{padding:15px 25px;border:2px solid #4fc3f7;border-radius:8px;font-weight:bold;font-size:14px}
-.contact{padding:80px 40px;max-width:800px;margin:0 auto}
+.badge{padding:15px 25px;border:2px solid #4fc3f7;border-radius:50px;font-weight:bold;font-size:14px;transition:background 0.3s}
+.badge:hover{background:rgba(79,195,247,0.1)}
+.contact{padding:100px 40px;max-width:800px;margin:0 auto}
 .contact h2{font-size:36px;margin-bottom:20px;text-align:center;letter-spacing:4px}
-.contact>p{text-align:center;color:#b0bec5;margin-bottom:40px}
+.contact>p{text-align:center;color:#b0bec5;margin-bottom:48px}
 .form{display:grid;gap:20px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.fg label{display:block;margin-bottom:8px;font-size:14px}
-.fg input,.fg select,.fg textarea{width:100%;padding:12px;border:1px solid #4a5568;background:#2c3e50;color:#fff;border-radius:4px;font-size:14px}
+.fg label{display:block;margin-bottom:8px;font-size:14px;color:#b0bec5}
+.fg input,.fg select,.fg textarea{width:100%;padding:14px;border:1px solid rgba(79,195,247,0.2);background:#1a2f3d;color:#fff;border-radius:8px;font-size:14px;transition:border-color 0.3s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:#4fc3f7}
 .fg textarea{height:120px;resize:vertical}
-.btn{padding:15px 40px;background:#4fc3f7;color:#1a2332;border:none;font-size:16px;cursor:pointer;border-radius:4px;font-weight:bold;width:100%}
-.btn:hover{background:#29b6f6}
-.ft{background:#0f1923;padding:40px}
+.btn{padding:18px 48px;background:linear-gradient(135deg,#00e676,#00c853);color:#0f1923;border:none;font-size:16px;cursor:pointer;border-radius:50px;font-weight:700;width:100%;text-transform:uppercase;letter-spacing:2px;transition:transform 0.3s,box-shadow 0.3s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(0,230,118,0.3)}
+.ft{background:#060d13;padding:60px 40px;margin-top:60px}
 .fi{display:flex;justify-content:center;gap:60px;flex-wrap:wrap;margin-bottom:30px}
 .fi div{text-align:center}
 .fi h4{color:#4fc3f7;margin-bottom:10px}
 .fi p{color:#b0bec5;line-height:1.8}
 .sl{display:flex;justify-content:center;gap:15px;margin-bottom:20px}
 .sl a{width:40px;height:40px;border:1px solid #4fc3f7;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background 0.3s}
-.sl a:hover{background:#4fc3f7;color:#1a2332}
-@media(max-width:768px){.hero h1{font-size:36px}.row{grid-template-columns:1fr}.nav-links{display:none}.fi{gap:30px}}</style>
+.sl a:hover{background:#4fc3f7;color:#0f1923}
+@media(max-width:768px){.hero h1{font-size:42px}.row{grid-template-columns:1fr}.nav-links{display:none}.fi{gap:30px}}</style>
 </head>
 <body><nav class="nav">
 <div class="logo">A L T E C H</div>
@@ -57,23 +64,28 @@ a{color:#fff;text-decoration:none}
 <li><a href="#services">Services</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="#contact">Contact</a></li>
-</ul></nav>
+</ul>
+</nav>
 <section class="hero" id="home">
+<div class="hero-content">
 <h1>A L T E C H</h1>
 <div class="sub">IT ASSET DISPOSITION</div>
 <p>Responsible electronics recycling and IT asset management for businesses in Houston, Texas and the Gulf Coast region.</p>
-<a href="#contact" class="cta">Request a Quote</a></section>
+<a href="#contact" class="cta">Request a Quote</a>
+</div>
+</section>
 <section class="sec" id="services"><h2>Our Services</h2>
+<p class="sec-subtitle">Comprehensive IT asset lifecycle management solutions</p>
 <div class="grid">
-<div class="card"><div class="icon">&#128187;</div><h3>ITAD Management &amp; Resale</h3><p>Our ITAD service is dedicated to optimizing your technology investments. We ensure efficient tracking, maintenance, and responsible disposal.</p></div>
-<div class="card"><div class="icon">&#9851;</div><h3>Responsible Recycling</h3><p>We responsibly recycle your computer and electronic equipment. R2V3, ISO 9001, ISO 14001, and ISO 45001 certified.</p></div>
-<div class="card"><div class="icon">&#128666;</div><h3>Customer Drop-Off</h3><p>Open Monday through Friday from 8:30 AM to 3:30 PM CT at our Houston facility.</p></div>
-<div class="card"><div class="icon">&#128230;</div><h3>Schedule a Pickup</h3><p>Schedule an LTL or full truckload shipment. We handle logistics from start to finish.</p></div>
+<div class="card"><div class="icon">&#128187;</div><h3>ITAD Management &amp; Resale</h3><p>Our ITAD service is dedicated to optimizing your technology investments. We handle the complete lifecycle of your IT assets from audit to remarketing.</p></div>
+<div class="card"><div class="icon">&#9851;</div><h3>Responsible Recycling</h3><p>We responsibly recycle your computer and electronic equipment. R2V3, ISO 9001, ISO 14001, and ISO 45001 certified processes ensure compliance.</p></div>
+<div class="card"><div class="icon">&#128666;</div><h3>Customer Drop-Off</h3><p>Open Monday through Friday from 8:30 AM to 3:30 PM CT at our Houston facility. Convenient drop-off for businesses of all sizes.</p></div>
+<div class="card"><div class="icon">&#128230;</div><h3>Schedule a Pickup</h3><p>Schedule an LTL or full truckload shipment. We handle logistics from start to finish with secure chain of custody documentation.</p></div>
 </div></section>
 <section class="certs" id="about"><h2>Certifications</h2>
 <p style="color:#b0bec5">Industry-leading certifications for responsible IT asset handling</p>
 <div class="badges">
-<div class="badge">R2 v3 Certified</div>
+<div class="badge">R2 V3 Certified</div>
 <div class="badge">ISO 9001</div>
 <div class="badge">ISO 14001</div>
 <div class="badge">ISO 45001</div>
@@ -84,17 +96,19 @@ a{color:#fff;text-decoration:none}
 <form class="form" onsubmit="event.preventDefault();alert('Thank you!')">
 <div class="row">
 <div class="fg"><label>First Name *</label><input type="text" required></div>
-<div class="fg"><label>Last Name *</label><input type="text" required></div></div>
+<div class="fg"><label>Last Name *</label><input type="text" required></div>
+</div>
 <div class="fg"><label>Email *</label><input type="email" required></div>
 <div class="fg"><label>Phone/Mobile</label><input type="tel"></div>
-<div class="fg"><label>Topic *</label><select required><option value="">- Select -</option><option>ITAD Services</option><option>Recycling</option><option>Drop-Off</option><option>Pickup</option><option>Quote</option><option>Other</option></select></div>
+<div class="fg"><label>Topic *</label><select required><option value="">- Select -</option><option>ITAD Services</option><option>Recycling</option><option>Drop-Off</option><option>Pickup</option><option>Other</option></select></div>
 <div class="fg"><label>Your Message *</label><textarea required></textarea></div>
 <button type="submit" class="btn">Send Message</button></form></section>
 <footer class="ft">
 <div class="fi">
 <div><h4>Address</h4><p>3009 Claymoore Park Drive<br>Houston, Texas 77043</p></div>
 <div><h4>Phone</h4><p>713-680-9325<br>833-GET-ITAD</p></div>
-<div><h4>Email</h4><p>info@altechco.com</p></div></div>
+<div><h4>Email</h4><p>info@altechco.com</p></div>
+</div>
 <div class="sl"><a href="#">FB</a><a href="#">IG</a><a href="#">YT</a><a href="#">LI</a></div>
 <p style="text-align:center;color:#b0bec5;font-size:12px">&copy; 2026 Altech Companies. All rights reserved.</p></footer></body>
 </html>
