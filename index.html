@@ -3,79 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Altech Recycling - IT Asset Disposition</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Altech Recycling - IT Asset Disposition Houston TX</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',Arial,sans-serif;color:#fff;background:#1a2332}
-a{color:#fff;text-decoration:none}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:#1a2332;position:fixed;width:100%;top:0;z-index:100;border-bottom:1px solid #2c3e50}
-.nav-links{display:flex;gap:30px;list-style:none}
-.nav-links a:hover{color:#4fc3f7}
-.logo{font-size:28px;letter-spacing:8px;font-weight:300;background:linear-gradient(135deg,#4fc3f7,#00e676);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:80px;overflow:hidden}
-.hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(26,35,50,0.85),rgba(15,25,35,0.8));z-index:1}
-.hero-content{position:relative;z-index:2}
-.hero h1{font-size:64px;letter-spacing:12px;font-weight:300;margin-bottom:10px}
-.sub{font-size:14px;letter-spacing:3px;color:#4fc3f7;margin-bottom:20px}
-.hero p{font-size:18px;color:#b0bec5;max-width:600px;line-height:1.6}
-.cta{display:inline-block;margin-top:30px;padding:15px 40px;background:#00e676;color:#0f1923;border:none;font-size:16px;cursor:pointer;border-radius:4px;font-weight:bold;text-decoration:none}
-.cta:hover{background:#00c853}
-.service-section{position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:80px 40px}
-.service-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.service-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(15,25,35,0.82);z-index:1}
-.service-content{position:relative;z-index:2;text-align:center;max-width:800px}
-.service-content .icon{font-size:48px;margin-bottom:20px}
-.service-content h3{font-size:32px;margin-bottom:15px;letter-spacing:2px}
-.service-content p{font-size:18px;color:#b0bec5;line-height:1.7;margin-bottom:25px}
-.service-content .view-link{color:#4fc3f7;font-weight:600;font-size:16px;letter-spacing:1px;transition:color 0.3s}
-.service-content .view-link:hover{color:#00e676}
-.services-header{text-align:center;padding:80px 40px 40px;background:#0f1923}
-.services-header h2{font-size:36px;margin-bottom:20px;letter-spacing:4px}
-.services-header p{color:#b0bec5;font-size:18px}
-.certs{text-align:center;padding:80px 40px;background:#0f1923}
-.certs h2{font-size:36px;margin-bottom:20px;letter-spacing:4px}
-.badges{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:30px}
-.badge{padding:15px 25px;border:2px solid #4fc3f7;border-radius:8px;font-weight:bold;font-size:14px}
-.contact{padding:80px 40px;max-width:800px;margin:0 auto}
-.contact h2{font-size:36px;margin-bottom:20px;text-align:center;letter-spacing:4px}
-.contact p{text-align:center;color:#b0bec5;margin-bottom:40px}
-.form{display:grid;gap:20px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.fg label{display:block;margin-bottom:8px;font-size:14px}
-.fg input,.fg select,.fg textarea{width:100%;padding:12px;border:1px solid #4a5568;background:#2c3e50;color:#fff;border-radius:4px;font-size:14px}
-.fg textarea{height:120px;resize:vertical}
-.btn{padding:15px 40px;background:#00e676;color:#0f1923;border:none;font-size:16px;cursor:pointer;border-radius:4px;font-weight:bold;width:100%}
-.btn:hover{background:#00c853}
-.ft{background:#0f1923;padding:40px}
-.fi{display:flex;justify-content:center;gap:60px;flex-wrap:wrap;margin-bottom:30px}
-.fi div{text-align:center}
-.fi h4{color:#4fc3f7;margin-bottom:10px}
-.fi p{color:#b0bec5;line-height:1.8}
-.sl{display:flex;justify-content:center;gap:15px;margin-bottom:20px}
-.sl a{width:36px;height:36px;border:1px solid #4fc3f7;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#4fc3f7;font-size:14px}
-.sl a:hover{background:#4fc3f7;color:#1a2332}
-@media(max-width:768px){.hero h1{font-size:36px}.row{grid-template-columns:1fr}.nav-links{display:none}.fi{gap:30px}.service-section{min-height:50vh;padding:60px 20px}.service-content h3{font-size:24px}}
+body{font-family:'Segoe UI',sans-serif;color:#fff;background:#0f1923}
+nav{position:fixed;top:0;width:100%;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;z-index:1000;background:rgba(15,25,35,0.95);backdrop-filter:blur(10px)}
+.logo{font-size:1.4rem;font-weight:700;letter-spacing:3px}
+.nav-links a{color:#fff;text-decoration:none;margin-left:30px;font-size:0.9rem;letter-spacing:1px}
+.hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%);z-index:0;object-fit:cover}
+.hero::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(15,25,35,0.6);z-index:1}
+.hero-content{position:relative;z-index:2;max-width:800px;padding:0 20px}
+.hero h1{font-size:4rem;letter-spacing:15px;margin-bottom:10px}
+.sub{font-size:1.1rem;letter-spacing:5px;margin-bottom:20px;color:#b0bec5}
+.hero p{font-size:1.1rem;color:#cfd8dc;margin-bottom:30px}
+.cta{display:inline-block;padding:14px 40px;background:#4fc3f7;color:#0f1923;text-decoration:none;font-weight:600;border-radius:4px;letter-spacing:1px}
+.sec{padding:80px 40px;text-align:center}
+.sec h2{font-size:2rem;letter-spacing:3px;margin-bottom:10px}
+.sec-subtitle{color:#b0bec5;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;max-width:1200px;margin:0 auto}
+.card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:40px 30px}
+.card .icon{font-size:2.5rem;margin-bottom:15px}
+.card h3{margin-bottom:10px;letter-spacing:1px}
+.card p{color:#b0bec5;font-size:0.9rem}
+.service-section{padding:80px 40px;text-align:center}
+.service-section h2{font-size:2rem;letter-spacing:3px;margin-bottom:10px}
+.service-video-section{position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center}
+.service-bg-video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%);z-index:0;object-fit:cover}
+.service-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(15,25,35,0.7);z-index:1}
+.service-content{position:relative;z-index:2;max-width:800px;padding:40px 20px}
+.service-content .icon{font-size:2.5rem;margin-bottom:15px}
+.service-content h3{font-size:1.5rem;margin-bottom:10px;letter-spacing:1px}
+.service-content p{color:#cfd8dc;font-size:1rem}
+.certs{padding:80px 40px;text-align:center}
+.badges{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:20px}
+.badge{background:rgba(79,195,247,0.1);border:1px solid #4fc3f7;padding:10px 25px;border-radius:20px;font-size:0.85rem}
+.contact{padding:80px 40px;max-width:600px;margin:0 auto}
+.contact h2{text-align:center;font-size:2rem;letter-spacing:3px;margin-bottom:10px}
+.contact p{text-align:center;color:#b0bec5;margin-bottom:30px}
+.form{display:flex;flex-direction:column;gap:15px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.fg label{display:block;font-size:0.8rem;letter-spacing:1px;margin-bottom:5px;color:#b0bec5}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.2);border-radius:4px;color:#fff;font-size:0.9rem}
+.fg textarea{height:100px;resize:vertical}
+.btn{padding:14px;background:#4fc3f7;color:#0f1923;border:none;font-size:1rem;font-weight:600;border-radius:4px;cursor:pointer;letter-spacing:1px}
+footer{border-top:1px solid rgba(255,255,255,0.1);padding:40px}
+.ft{padding:40px}
+.fi{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;max-width:1200px;margin:0 auto}
+.fi h4{margin-bottom:10px;letter-spacing:1px}
+.fi p{color:#b0bec5;font-size:0.85rem}
+.sl a{color:#b0bec5;text-decoration:none;margin-right:15px}
 </style>
 </head>
 <body>
-<nav class="nav">
-<div class="logo">A L T E C H</div>
-<ul class="nav-links">
-<li><a href="#home">Home</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
+<nav><div class="logo">ALTECH</div><div class="nav-links"><a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
 <section class="hero" id="home">
-<video class="hero-video" autoplay muted loop playsinline>
-<source src="https://videos.pexels.com/video-files/6466100/6466100-hd_1920_1080_30fps.mp4" type="video/mp4">
-</video>
-<div class="hero-overlay"></div>
 <div class="hero-content">
 <h1>A L T E C H</h1>
 <div class="sub">IT ASSET DISPOSITION</div>
@@ -83,60 +65,54 @@ a{color:#fff;text-decoration:none}
 <a href="#contact" class="cta">Request a Quote</a>
 </div>
 </section>
-<div class="services-header" id="services">
+<section class="service-section" id="services">
 <h2>Our Services</h2>
-<p>Comprehensive IT asset disposition solutions</p>
-</div>
-<section class="service-section">
-<video class="service-video" autoplay muted loop playsinline>
-<source src="https://videos.pexels.com/video-files/3289569/3289569-hd_1920_1080_25fps.mp4" type="video/mp4">
+</section>
+<section class="service-video-section">
+<video autoplay muted loop playsinline class="service-bg-video">
+<source src="videos/circuitboard.mp4" type="video/mp4">
 </video>
 <div class="service-overlay"></div>
 <div class="service-content">
 <div class="icon">&#128187;</div>
 <h3>ITAD Management &amp; Resale</h3>
-<p>End-to-end IT asset disposition with certified data destruction and maximum value recovery through refurbishment and resale channels.</p>
-<a href="it-management.html" class="view-link">LEARN MORE &rarr;</a>
+<p>Our ITAD service is dedicated to optimizing your technology investments. We ensure efficient tracking, maintenance, and responsible disposal.</p>
 </div>
 </section>
-<section class="service-section">
-<video class="service-video" autoplay muted loop playsinline>
-<source src="https://videos.pexels.com/video-files/6981411/6981411-hd_1920_1080_25fps.mp4" type="video/mp4">
+<section class="service-video-section">
+<video autoplay muted loop playsinline class="service-bg-video">
+<source src="videos/harddrivedestruction.mp4" type="video/mp4">
 </video>
 <div class="service-overlay"></div>
 <div class="service-content">
 <div class="icon">&#9851;</div>
 <h3>Responsible Recycling</h3>
-<p>EPA-compliant recycling processes ensuring zero landfill disposal. We break down electronics responsibly and recover valuable materials.</p>
-<a href="responsible-recycling.html" class="view-link">LEARN MORE &rarr;</a>
+<p>We responsibly recycle your computer and electronic equipment. R2V3, ISO 9001, ISO 14001, and ISO 45001 certified.</p>
 </div>
 </section>
-<section class="service-section">
-<video class="service-video" autoplay muted loop playsinline>
-<source src="https://videos.pexels.com/video-files/3191572/3191572-hd_1920_1080_25fps.mp4" type="video/mp4">
-</video>
-<div class="service-overlay"></div>
-<div class="service-content">
-<div class="icon">&#128230;</div>
-<h3>Customer Drop-Off</h3>
-<p>Convenient drop-off location for businesses and individuals. Bring your old electronics to our facility for secure processing.</p>
-<a href="#contact" class="view-link">LEARN MORE &rarr;</a>
-</div>
-</section>
-<section class="service-section">
-<video class="service-video" autoplay muted loop playsinline>
-<source src="https://videos.pexels.com/video-files/5700938/5700938-hd_1920_1080_25fps.mp4" type="video/mp4">
+<section class="service-video-section">
+<video autoplay muted loop playsinline class="service-bg-video">
+<source src="videos/deliverytruck.mp4" type="video/mp4">
 </video>
 <div class="service-overlay"></div>
 <div class="service-content">
 <div class="icon">&#128666;</div>
-<h3>Schedule a Pickup</h3>
-<p>Schedule an LTL or full truckload shipment. We handle logistics from start to finish.</p>
-<a href="schedule-pickup.html" class="view-link">LEARN MORE &rarr;</a>
+<h3>Customer Drop-Off</h3>
+<p>Open Monday through Friday from 8:30 AM to 3:30 PM CT at our Houston facility.</p>
 </div>
 </section>
-<section class="certs" id="about">
-<h2>Certifications</h2>
+<section class="service-video-section">
+<video autoplay muted loop playsinline class="service-bg-video">
+<source src="videos/customerdropoff.mp4" type="video/mp4">
+</video>
+<div class="service-overlay"></div>
+<div class="service-content">
+<div class="icon">&#128230;</div>
+<h3>Schedule a Pickup</h3>
+<p>Schedule an LTL or full truckload shipment. We handle logistics from start to finish.</p>
+</div>
+</section>
+<section class="certs" id="about"><h2>Certifications</h2>
 <p style="color:#b0bec5">Industry-leading certifications for responsible IT asset handling</p>
 <div class="badges">
 <div class="badge">R2 V3 Certified</div>
@@ -144,26 +120,20 @@ a{color:#fff;text-decoration:none}
 <div class="badge">ISO 14001</div>
 <div class="badge">ISO 45001</div>
 <div class="badge">ITAR Registered</div>
-</div>
-</section>
-<section class="contact" id="contact">
-<h2>Contact Us</h2>
-<p style="color:#b0bec5">Get a quote for your IT asset disposition needs</p>
-<form class="form">
+</div></section>
+<section class="contact" id="contact"><h2>Contact Us</h2>
+<p>Contact us for electronics recycling and reselling in Houston, Texas and the Gulf Coast region.</p>
+<form class="form" onsubmit="event.preventDefault();alert('Thank you!')">
 <div class="row">
 <div class="fg"><label>First Name *</label><input type="text" required></div>
 <div class="fg"><label>Last Name *</label><input type="text" required></div>
 </div>
-<div class="row">
 <div class="fg"><label>Email *</label><input type="email" required></div>
-<div class="fg"><label>Phone</label><input type="tel"></div>
-</div>
-<div class="fg"><label>Company</label><input type="text"></div>
+<div class="fg"><label>Phone/Mobile</label><input type="tel"></div>
 <div class="fg"><label>Topic *</label><select required><option value="">- Select -</option><option>ITAD Services</option><option>Recycling</option><option>Drop-Off</option><option>Pickup</option><option>Quote</option><option>Other</option></select></div>
 <div class="fg"><label>Your Message *</label><textarea required></textarea></div>
 <button type="submit" class="btn">Send Message</button>
-</form>
-</section>
+</form></section>
 <footer class="ft">
 <div class="fi">
 <div><h4>Address</h4><p>3009 Claymoore Park Drive<br>Houston, Texas 77043</p></div>
@@ -171,7 +141,6 @@ a{color:#fff;text-decoration:none}
 <div><h4>Email</h4><p>info@altechco.com</p></div>
 </div>
 <div class="sl"><a href="#">FB</a><a href="#">IG</a><a href="#">YT</a><a href="#">LI</a></div>
-<p style="text-align:center;color:#b0bec5;font-size:12px">&copy; 2026 Altech Companies. All rights reserved.</p>
-</footer>
+<p style="text-align:center;color:#b0bec5;font-size:12px">&copy; 2026 Altech Companies. All rights reserved.</p></footer>
 </body>
 </html>
