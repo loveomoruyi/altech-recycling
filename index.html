@@ -13,7 +13,7 @@ nav{position:fixed;top:0;width:100%;padding:18px 40px;display:flex;justify-conte
 .nav-links a{color:#fff;text-decoration:none;margin-left:30px;font-size:0.9rem;letter-spacing:1px}
 .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#0a1520}
 .hero video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%) translateZ(0);z-index:0;object-fit:cover;will-change:transform}
-.hero::before{display:none}
+.hero-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0}
 .hero::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(10,20,30,0.3);z-index:1}
 .hero-content{position:relative;z-index:2;max-width:800px;padding:0 20px}
 .hero h1{font-family:'Roboto',sans-serif;font-size:4rem;font-weight:100;letter-spacing:15px;margin-bottom:10px;background:linear-gradient(135deg,#4fc3f7,#00e676);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -60,9 +60,7 @@ footer{border-top:1px solid rgba(255,255,255,0.1);padding:40px}
 <body>
 <nav><div class="logo">ALTECH</div><div class="nav-links"><a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
 <section class="hero" id="home">
-<video autoplay muted loop playsinline class="hero-bg-video">
-<source src="videos/circuitboard.mp4" type="video/mp4">
-</video>
+<canvas id="circuit-canvas" class="hero-canvas"></canvas>
 <div class="hero-content">
 <h1>A L T E C H</h1>
 <div class="sub">IT ASSET DISPOSITION</div>
@@ -148,5 +146,137 @@ footer{border-top:1px solid rgba(255,255,255,0.1);padding:40px}
 <div class="sl"><a href="#">FB</a><a href="#">IG</a><a href="#">YT</a><a href="#">LI</a></div>
 <p style="text-align:center;color:#b0bec5;font-size:12px">&copy; 2026 Altech Companies. All rights reserved.</p></footer>
 <script>document.addEventListener("DOMContentLoaded",function(){var videos=document.querySelectorAll("video");videos.forEach(function(v){v.playbackRate=0.75;v.style.willChange="transform";v.style.transform="translateZ(0)";});});</script>
+
+<script>
+// Animated Circuit Board Background
+(function() {
+  const canvas = document.getElementById('circuit-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, nodes = [], paths = [], particles = [];
+  
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+    initCircuit();
+  }
+  
+  function initCircuit() {
+    nodes = [];
+    paths = [];
+    particles = [];
+    const gridSize = 60;
+    const cols = Math.ceil(w / gridSize);
+    const rows = Math.ceil(h / gridSize);
+    
+    // Create grid nodes
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        if (Math.random() > 0.4) {
+          nodes.push({
+            x: i * gridSize + gridSize/2 + (Math.random()-0.5)*10,
+            y: j * gridSize + gridSize/2 + (Math.random()-0.5)*10,
+            radius: Math.random() > 0.7 ? 3 : 1.5
+          });
+        }
+      }
+    }
+    
+    // Create paths between nearby nodes
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i+1; j < nodes.length; j++) {
+        const dx = nodes[j].x - nodes[i].x;
+        const dy = nodes[j].y - nodes[i].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 80 && Math.random() > 0.5) {
+          paths.push({from: i, to: j, dist: dist});
+        }
+      }
+    }
+    
+    // Create flowing particles
+    for (let i = 0; i < 30; i++) {
+      spawnParticle();
+    }
+  }
+  
+  function spawnParticle() {
+    if (paths.length === 0) return;
+    const pathIdx = Math.floor(Math.random() * paths.length);
+    particles.push({
+      pathIdx: pathIdx,
+      progress: 0,
+      speed: 0.005 + Math.random() * 0.015,
+      size: 1.5 + Math.random() * 2,
+      alpha: 0.6 + Math.random() * 0.4
+    });
+  }
+  
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    
+    // Draw paths (circuit traces)
+    ctx.strokeStyle = 'rgba(79, 195, 247, 0.15)';
+    ctx.lineWidth = 1;
+    paths.forEach(p => {
+      const from = nodes[p.from];
+      const to = nodes[p.to];
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      // Draw right-angle paths (like real PCB traces)
+      if (Math.abs(to.x - from.x) > Math.abs(to.y - from.y)) {
+        const midX = (from.x + to.x) / 2;
+        ctx.lineTo(midX, from.y);
+        ctx.lineTo(midX, to.y);
+      } else {
+        const midY = (from.y + to.y) / 2;
+        ctx.lineTo(from.x, midY);
+        ctx.lineTo(to.x, midY);
+      }
+      ctx.lineTo(to.x, to.y);
+      ctx.stroke();
+    });
+    
+    // Draw nodes
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(79, 195, 247, 0.3)';
+      ctx.fill();
+    });
+    
+    // Draw and update particles (flowing data)
+    particles.forEach((p, idx) => {
+      p.progress += p.speed;
+      if (p.progress >= 1) {
+        p.progress = 0;
+        p.pathIdx = Math.floor(Math.random() * paths.length);
+      }
+      
+      const path = paths[p.pathIdx];
+      if (!path) return;
+      const from = nodes[path.from];
+      const to = nodes[path.to];
+      const x = from.x + (to.x - from.x) * p.progress;
+      const y = from.y + (to.y - from.y) * p.progress;
+      
+      ctx.beginPath();
+      ctx.arc(x, y, p.size, 0, Math.PI * 2);
+      const gradient = ctx.createRadialGradient(x, y, 0, x, y, p.size * 3);
+      gradient.addColorStop(0, 'rgba(0, 230, 118, ' + p.alpha + ')');
+      gradient.addColorStop(0.5, 'rgba(79, 195, 247, ' + (p.alpha * 0.5) + ')');
+      gradient.addColorStop(1, 'rgba(79, 195, 247, 0)');
+      ctx.fillStyle = gradient;
+      ctx.fill();
+    });
+    
+    requestAnimationFrame(draw);
+  }
+  
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+</script>
 </body>
 </html>
