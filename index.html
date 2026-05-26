@@ -13,7 +13,7 @@ nav{position:fixed;top:0;width:100%;padding:18px 40px;display:flex;justify-conte
 .nav-links a{color:#fff;text-decoration:none;margin-left:30px;font-size:0.9rem;letter-spacing:1px}
 .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#0a1520}
 .hero video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%) translateZ(0);z-index:0;object-fit:cover;will-change:transform}
-.hero-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0}
+
 .hero::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(10,20,30,0.3);z-index:1}
 .hero-content{position:relative;z-index:2;max-width:800px;padding:0 20px}
 .hero h1{font-family:'Roboto',sans-serif;font-size:4rem;font-weight:100;letter-spacing:15px;margin-bottom:10px;background:linear-gradient(135deg,#4fc3f7,#00e676);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -60,7 +60,7 @@ footer{border-top:1px solid rgba(255,255,255,0.1);padding:40px}
 <body>
 <nav><div class="logo">ALTECH</div><div class="nav-links"><a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
 <section class="hero" id="home">
-<canvas id="circuit-canvas" class="hero-canvas"></canvas>
+<video autoplay muted loop playsinline class="hero-bg-video"><source src="videos/6466100-uhd_3840_2160_30fps.mp4" type="video/mp4"></video>
 <div class="hero-content">
 <h1>A L T E C H</h1>
 <div class="sub">IT ASSET DISPOSITION</div>
@@ -147,193 +147,6 @@ footer{border-top:1px solid rgba(255,255,255,0.1);padding:40px}
 <p style="text-align:center;color:#b0bec5;font-size:12px">&copy; 2026 Altech Companies. All rights reserved.</p></footer>
 <script>document.addEventListener("DOMContentLoaded",function(){var videos=document.querySelectorAll("video");videos.forEach(function(v){v.playbackRate=0.5;v.style.willChange="transform";v.style.transform="translateZ(0)";});});</script>
 
-<script>
-(function() {
-  const canvas = document.getElementById('circuit-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let w, h, nodes = [], paths = [], busLines = [];
-
-  function resize() {
-    w = canvas.width = canvas.parentElement.offsetWidth;
-    h = canvas.height = canvas.parentElement.offsetHeight;
-    generateCircuit();
-  }
-
-  function generateCircuit() {
-    nodes = [];
-    paths = [];
-    busLines = [];
-    const gridSize = 40;
-    const cols = Math.ceil(w / gridSize) + 1;
-    const rows = Math.ceil(h / gridSize) + 1;
-
-    for (let i = 0; i < cols; i++) {
-      for (let j = 0; j < rows; j++) {
-        if (Math.random() > 0.4) {
-          nodes.push({
-            x: i * gridSize + (Math.random() - 0.5) * 8,
-            y: j * gridSize + (Math.random() - 0.5) * 8,
-            radius: Math.random() > 0.7 ? 3 : 1.5
-          });
-        }
-      }
-    }
-
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dx = nodes[j].x - nodes[i].x;
-        const dy = nodes[j].y - nodes[i].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 70 && Math.random() > 0.5) {
-          paths.push({from: i, to: j, dist: dist});
-        }
-      }
-    }
-
-    for (let i = 0; i < 50; i++) {
-      spawnBusLine();
-    }
-  }
-
-  function spawnBusLine() {
-    if (paths.length === 0) return;
-    const pathIdx = Math.floor(Math.random() * paths.length);
-    busLines.push({
-      pathIdx: pathIdx,
-      progress: Math.random() * 1.5 - 0.3,
-      speed: 0.008 + Math.random() * 0.025,
-      tailLength: 0.15 + Math.random() * 0.35,
-      alpha: 0.5 + Math.random() * 0.5,
-      hue: Math.random() > 0.5 ? 180 : 150,
-      width: 1.5 + Math.random() * 2
-    });
-  }
-
-  function getPointOnPath(path, t) {
-    const from = nodes[path.from];
-    const to = nodes[path.to];
-    const dx = Math.abs(to.x - from.x);
-    const dy = Math.abs(to.y - from.y);
-
-    if (dx > dy) {
-      const midX = (from.x + to.x) / 2;
-      if (t < 0.33) {
-        const lt = t / 0.33;
-        return {x: from.x + (midX - from.x) * lt, y: from.y};
-      } else if (t < 0.66) {
-        const lt = (t - 0.33) / 0.33;
-        return {x: midX, y: from.y + (to.y - from.y) * lt};
-      } else {
-        const lt = (t - 0.66) / 0.34;
-        return {x: midX + (to.x - midX) * lt, y: to.y};
-      }
-    } else {
-      const midY = (from.y + to.y) / 2;
-      if (t < 0.33) {
-        const lt = t / 0.33;
-        return {x: from.x, y: from.y + (midY - from.y) * lt};
-      } else if (t < 0.66) {
-        const lt = (t - 0.33) / 0.33;
-        return {x: from.x + (to.x - from.x) * lt, y: midY};
-      } else {
-        const lt = (t - 0.66) / 0.34;
-        return {x: to.x, y: midY + (to.y - midY) * lt};
-      }
-    }
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-
-    // Draw static circuit traces (dim)
-    ctx.strokeStyle = 'rgba(79, 195, 247, 0.12)';
-    ctx.lineWidth = 1;
-    paths.forEach(function(path) {
-      const from = nodes[path.from];
-      const to = nodes[path.to];
-      ctx.beginPath();
-      ctx.moveTo(from.x, from.y);
-      const dx = Math.abs(to.x - from.x);
-      const dy = Math.abs(to.y - from.y);
-      if (dx > dy) {
-        const midX = (from.x + to.x) / 2;
-        ctx.lineTo(midX, from.y);
-        ctx.lineTo(midX, to.y);
-      } else {
-        const midY = (from.y + to.y) / 2;
-        ctx.lineTo(from.x, midY);
-        ctx.lineTo(to.x, midY);
-      }
-      ctx.lineTo(to.x, to.y);
-      ctx.stroke();
-    });
-
-    // Draw nodes
-    nodes.forEach(function(n) {
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(79, 195, 247, 0.25)';
-      ctx.fill();
-    });
-
-    // Draw bus-speed lines (elongated glowing traces)
-    busLines.forEach(function(line) {
-      line.progress += line.speed;
-      if (line.progress >= 1 + line.tailLength) {
-        line.progress = -line.tailLength;
-        line.pathIdx = Math.floor(Math.random() * paths.length);
-        line.speed = 0.008 + Math.random() * 0.025;
-        line.hue = Math.random() > 0.5 ? 180 : 150;
-      }
-
-      const path = paths[line.pathIdx];
-      if (!path) return;
-
-      const segments = 14;
-      for (let s = 0; s < segments; s++) {
-        const t1 = line.progress - (line.tailLength * s / segments);
-        const t2 = line.progress - (line.tailLength * (s + 1) / segments);
-
-        if (t1 < 0 && t2 < 0) continue;
-        if (t1 > 1 && t2 > 1) continue;
-
-        const clampedT1 = Math.max(0, Math.min(1, t1));
-        const clampedT2 = Math.max(0, Math.min(1, t2));
-
-        if (clampedT1 === clampedT2) continue;
-
-        const p1 = getPointOnPath(path, clampedT1);
-        const p2 = getPointOnPath(path, clampedT2);
-
-        const segAlpha = line.alpha * (1 - s / segments) * 0.9;
-        if (segAlpha <= 0.01) continue;
-
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.strokeStyle = 'hsla(' + line.hue + ', 90%, 65%, ' + segAlpha + ')';
-        ctx.lineWidth = line.width * (1 - s / segments * 0.5);
-        ctx.lineCap = 'round';
-        ctx.stroke();
-
-        if (s === 0 && t1 >= 0 && t1 <= 1) {
-          ctx.beginPath();
-          ctx.arc(p1.x, p1.y, line.width * 2.5, 0, Math.PI * 2);
-          ctx.fillStyle = 'hsla(' + line.hue + ', 90%, 75%, ' + (segAlpha * 0.4) + ')';
-          ctx.fill();
-        }
-      }
-    });
-
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-  draw();
-})();
-</script>
 
 </body>
 </html>
