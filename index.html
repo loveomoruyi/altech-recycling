@@ -30,8 +30,8 @@ nav{position:fixed;top:0;width:100%;padding:18px 40px;display:flex;justify-conte
 .card p{color:#b0bec5;font-size:0.9rem}
 .service-section{padding:80px 40px;text-align:center}
 .service-section h2{font-size:2rem;letter-spacing:3px;margin-bottom:10px}
-.service-video-section{position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center}
-.service-bg-video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%) translateZ(0);z-index:0;object-fit:cover;will-change:transform}
+.service-video-section{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center;margin-bottom:2px}
+.service-bg-video{position:absolute;top:0;left:0;width:100%;height:100%;transform:translateZ(0);z-index:0;object-fit:cover;will-change:transform;object-position:center center}
 .service-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(15,25,35,0.7);z-index:1}
 .service-content{position:relative;z-index:2;max-width:800px;padding:40px 20px}
 .service-content .icon{font-size:2.5rem;margin-bottom:15px}
@@ -145,86 +145,118 @@ footer{border-top:1px solid rgba(255,255,255,0.1);padding:40px}
 </div>
 <div class="sl"><a href="#">FB</a><a href="#">IG</a><a href="#">YT</a><a href="#">LI</a></div>
 <p style="text-align:center;color:#b0bec5;font-size:12px">&copy; 2026 Altech Companies. All rights reserved.</p></footer>
-<script>document.addEventListener("DOMContentLoaded",function(){var videos=document.querySelectorAll("video");videos.forEach(function(v){v.playbackRate=0.75;v.style.willChange="transform";v.style.transform="translateZ(0)";});});</script>
+<script>document.addEventListener("DOMContentLoaded",function(){var videos=document.querySelectorAll("video");videos.forEach(function(v){v.playbackRate=0.5;v.style.willChange="transform";v.style.transform="translateZ(0)";});});</script>
 
 <script>
-// Animated Circuit Board Background
 (function() {
   const canvas = document.getElementById('circuit-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  let w, h, nodes = [], paths = [], particles = [];
-  
+  let w, h, nodes = [], paths = [], busLines = [];
+
   function resize() {
-    w = canvas.width = canvas.offsetWidth;
-    h = canvas.height = canvas.offsetHeight;
-    initCircuit();
+    w = canvas.width = canvas.parentElement.offsetWidth;
+    h = canvas.height = canvas.parentElement.offsetHeight;
+    generateCircuit();
   }
-  
-  function initCircuit() {
+
+  function generateCircuit() {
     nodes = [];
     paths = [];
-    particles = [];
-    const gridSize = 60;
-    const cols = Math.ceil(w / gridSize);
-    const rows = Math.ceil(h / gridSize);
-    
-    // Create grid nodes
+    busLines = [];
+    const gridSize = 40;
+    const cols = Math.ceil(w / gridSize) + 1;
+    const rows = Math.ceil(h / gridSize) + 1;
+
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         if (Math.random() > 0.4) {
           nodes.push({
-            x: i * gridSize + gridSize/2 + (Math.random()-0.5)*10,
-            y: j * gridSize + gridSize/2 + (Math.random()-0.5)*10,
+            x: i * gridSize + (Math.random() - 0.5) * 8,
+            y: j * gridSize + (Math.random() - 0.5) * 8,
             radius: Math.random() > 0.7 ? 3 : 1.5
           });
         }
       }
     }
-    
-    // Create paths between nearby nodes
+
     for (let i = 0; i < nodes.length; i++) {
-      for (let j = i+1; j < nodes.length; j++) {
+      for (let j = i + 1; j < nodes.length; j++) {
         const dx = nodes[j].x - nodes[i].x;
         const dy = nodes[j].y - nodes[i].y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 80 && Math.random() > 0.5) {
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 70 && Math.random() > 0.5) {
           paths.push({from: i, to: j, dist: dist});
         }
       }
     }
-    
-    // Create flowing particles
-    for (let i = 0; i < 30; i++) {
-      spawnParticle();
+
+    for (let i = 0; i < 50; i++) {
+      spawnBusLine();
     }
   }
-  
-  function spawnParticle() {
+
+  function spawnBusLine() {
     if (paths.length === 0) return;
     const pathIdx = Math.floor(Math.random() * paths.length);
-    particles.push({
+    busLines.push({
       pathIdx: pathIdx,
-      progress: 0,
-      speed: 0.005 + Math.random() * 0.015,
-      size: 1.5 + Math.random() * 2,
-      alpha: 0.6 + Math.random() * 0.4
+      progress: Math.random() * 1.5 - 0.3,
+      speed: 0.008 + Math.random() * 0.025,
+      tailLength: 0.15 + Math.random() * 0.35,
+      alpha: 0.5 + Math.random() * 0.5,
+      hue: Math.random() > 0.5 ? 180 : 150,
+      width: 1.5 + Math.random() * 2
     });
   }
-  
+
+  function getPointOnPath(path, t) {
+    const from = nodes[path.from];
+    const to = nodes[path.to];
+    const dx = Math.abs(to.x - from.x);
+    const dy = Math.abs(to.y - from.y);
+
+    if (dx > dy) {
+      const midX = (from.x + to.x) / 2;
+      if (t < 0.33) {
+        const lt = t / 0.33;
+        return {x: from.x + (midX - from.x) * lt, y: from.y};
+      } else if (t < 0.66) {
+        const lt = (t - 0.33) / 0.33;
+        return {x: midX, y: from.y + (to.y - from.y) * lt};
+      } else {
+        const lt = (t - 0.66) / 0.34;
+        return {x: midX + (to.x - midX) * lt, y: to.y};
+      }
+    } else {
+      const midY = (from.y + to.y) / 2;
+      if (t < 0.33) {
+        const lt = t / 0.33;
+        return {x: from.x, y: from.y + (midY - from.y) * lt};
+      } else if (t < 0.66) {
+        const lt = (t - 0.33) / 0.33;
+        return {x: from.x + (to.x - from.x) * lt, y: midY};
+      } else {
+        const lt = (t - 0.66) / 0.34;
+        return {x: to.x, y: midY + (to.y - midY) * lt};
+      }
+    }
+  }
+
   function draw() {
     ctx.clearRect(0, 0, w, h);
-    
-    // Draw paths (circuit traces)
-    ctx.strokeStyle = 'rgba(79, 195, 247, 0.15)';
+
+    // Draw static circuit traces (dim)
+    ctx.strokeStyle = 'rgba(79, 195, 247, 0.12)';
     ctx.lineWidth = 1;
-    paths.forEach(p => {
-      const from = nodes[p.from];
-      const to = nodes[p.to];
+    paths.forEach(function(path) {
+      const from = nodes[path.from];
+      const to = nodes[path.to];
       ctx.beginPath();
       ctx.moveTo(from.x, from.y);
-      // Draw right-angle paths (like real PCB traces)
-      if (Math.abs(to.x - from.x) > Math.abs(to.y - from.y)) {
+      const dx = Math.abs(to.x - from.x);
+      const dy = Math.abs(to.y - from.y);
+      if (dx > dy) {
         const midX = (from.x + to.x) / 2;
         ctx.lineTo(midX, from.y);
         ctx.lineTo(midX, to.y);
@@ -236,47 +268,72 @@ footer{border-top:1px solid rgba(255,255,255,0.1);padding:40px}
       ctx.lineTo(to.x, to.y);
       ctx.stroke();
     });
-    
+
     // Draw nodes
-    nodes.forEach(n => {
+    nodes.forEach(function(n) {
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(79, 195, 247, 0.3)';
+      ctx.fillStyle = 'rgba(79, 195, 247, 0.25)';
       ctx.fill();
     });
-    
-    // Draw and update particles (flowing data)
-    particles.forEach((p, idx) => {
-      p.progress += p.speed;
-      if (p.progress >= 1) {
-        p.progress = 0;
-        p.pathIdx = Math.floor(Math.random() * paths.length);
+
+    // Draw bus-speed lines (elongated glowing traces)
+    busLines.forEach(function(line) {
+      line.progress += line.speed;
+      if (line.progress >= 1 + line.tailLength) {
+        line.progress = -line.tailLength;
+        line.pathIdx = Math.floor(Math.random() * paths.length);
+        line.speed = 0.008 + Math.random() * 0.025;
+        line.hue = Math.random() > 0.5 ? 180 : 150;
       }
-      
-      const path = paths[p.pathIdx];
+
+      const path = paths[line.pathIdx];
       if (!path) return;
-      const from = nodes[path.from];
-      const to = nodes[path.to];
-      const x = from.x + (to.x - from.x) * p.progress;
-      const y = from.y + (to.y - from.y) * p.progress;
-      
-      ctx.beginPath();
-      ctx.arc(x, y, p.size, 0, Math.PI * 2);
-      const gradient = ctx.createRadialGradient(x, y, 0, x, y, p.size * 3);
-      gradient.addColorStop(0, 'rgba(0, 230, 118, ' + p.alpha + ')');
-      gradient.addColorStop(0.5, 'rgba(79, 195, 247, ' + (p.alpha * 0.5) + ')');
-      gradient.addColorStop(1, 'rgba(79, 195, 247, 0)');
-      ctx.fillStyle = gradient;
-      ctx.fill();
+
+      const segments = 14;
+      for (let s = 0; s < segments; s++) {
+        const t1 = line.progress - (line.tailLength * s / segments);
+        const t2 = line.progress - (line.tailLength * (s + 1) / segments);
+
+        if (t1 < 0 && t2 < 0) continue;
+        if (t1 > 1 && t2 > 1) continue;
+
+        const clampedT1 = Math.max(0, Math.min(1, t1));
+        const clampedT2 = Math.max(0, Math.min(1, t2));
+
+        if (clampedT1 === clampedT2) continue;
+
+        const p1 = getPointOnPath(path, clampedT1);
+        const p2 = getPointOnPath(path, clampedT2);
+
+        const segAlpha = line.alpha * (1 - s / segments) * 0.9;
+        if (segAlpha <= 0.01) continue;
+
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = 'hsla(' + line.hue + ', 90%, 65%, ' + segAlpha + ')';
+        ctx.lineWidth = line.width * (1 - s / segments * 0.5);
+        ctx.lineCap = 'round';
+        ctx.stroke();
+
+        if (s === 0 && t1 >= 0 && t1 <= 1) {
+          ctx.beginPath();
+          ctx.arc(p1.x, p1.y, line.width * 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = 'hsla(' + line.hue + ', 90%, 75%, ' + (segAlpha * 0.4) + ')';
+          ctx.fill();
+        }
+      }
     });
-    
+
     requestAnimationFrame(draw);
   }
-  
+
   window.addEventListener('resize', resize);
   resize();
   draw();
 })();
 </script>
+
 </body>
 </html>
